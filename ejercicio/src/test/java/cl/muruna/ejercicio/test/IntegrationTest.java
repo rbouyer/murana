@@ -16,7 +16,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import cl.muruna.ejercicio.App;
-import cl.muruna.ejercicio.service.LoginService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = App.class)
@@ -28,8 +27,6 @@ public class IntegrationTest {
 	String userSignupInvalidUserExist = "{ \"name\": \"John Smith\", \"email\": \"jsmith@gmail.com\", \"password\": \"a2asfGfdfdf4\", \"phones\": [ { \"number\": 93305329, \"citycode\": 9, \"contrycode\": \"56\" } ] }";
 
     @Autowired private MockMvc mvc;
-    
-    @Autowired private LoginService loginSvc;
 
     @Test
     public void helloTest() throws Exception {
