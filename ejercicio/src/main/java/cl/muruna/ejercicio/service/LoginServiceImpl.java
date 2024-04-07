@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import cl.muruna.ejercicio.model.User;
+import cl.muruna.ejercicio.repository.PhoneRepository;
 import cl.muruna.ejercicio.repository.UserRepository;
 import cl.muruna.ejercicio.util.JwtUtil;
 
@@ -18,6 +19,7 @@ public class LoginServiceImpl implements LoginService {
 	private String reClave;
 
 	@Autowired private UserRepository userRepository;
+	@Autowired private PhoneRepository phoneRepository;
 	
 	
 	
@@ -56,14 +58,15 @@ public class LoginServiceImpl implements LoginService {
 		newUser.setCreated(LocalDateTime.now());
 		newUser.setModified(newUser.getCreated());
 		newUser.setToken(JwtUtil.generateToken(newUser.getEmail(), secret));
+		
+		savedUser = userRepository.save(newUser);
 
 		if(newUser.getPhones() != null && newUser.getPhones().size() > 0) {
 			newUser.getPhones().forEach(p -> {
 				p.setUser(newUser);
+				phoneRepository.save(p);
 			});
 		}
-		
-		savedUser = userRepository.save(newUser);
 				
 		return savedUser;
 	}
