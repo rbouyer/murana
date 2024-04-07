@@ -25,6 +25,7 @@ public class User {
 		this.password = password;
 		this.phones = phones;
 		this.created = created;
+		this.modified = created;
 		this.isActive = isActive;
 	}
 
@@ -46,6 +47,8 @@ public class User {
 	private String token;
 	
 	private LocalDateTime created;
+	
+	private LocalDateTime modified;
 	
 	@Column(name = "last_login")
 	private LocalDateTime lastLogin;
@@ -107,6 +110,14 @@ public class User {
 
 	public void setCreated(LocalDateTime created) {
 		this.created = created;
+	}
+
+	public LocalDateTime getModified() {
+		return modified;
+	}
+
+	public void setModified(LocalDateTime modified) {
+		this.modified = modified;
 	}
 
 	public LocalDateTime getLastLogin() {

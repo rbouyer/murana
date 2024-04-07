@@ -24,12 +24,12 @@ public class RegistroController {
 	}   
 
 	@PostMapping("/api/v1/registro")
-	public ResponseEntity<Object> signUp(@RequestBody User newUser) {
+	public ResponseEntity<Object> registrar(@RequestBody User newUser) {
 		Object result = null;
 		HttpStatus status = HttpStatus.OK;
 		
 		try {
-			String error = loginSvc.validateSignUp(newUser);
+			String error = loginSvc.validarRegistro(newUser);
 			User createdUser = null;
 			
 			if(error == null) {

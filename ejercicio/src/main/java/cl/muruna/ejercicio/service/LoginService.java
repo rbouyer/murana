@@ -5,5 +5,5 @@ import cl.muruna.ejercicio.model.User;
 
 public interface LoginService {
 	User saveNewUser(User newUser);
-	String validateSignUp(User user);
+	String validarRegistro(User user);
 }

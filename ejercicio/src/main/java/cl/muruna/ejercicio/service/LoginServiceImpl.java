@@ -15,12 +15,20 @@ import cl.muruna.ejercicio.util.JwtUtil;
 @Service
 public class LoginServiceImpl implements LoginService {
 	private String secret;
+	private String reClave;
 
 	@Autowired private UserRepository userRepository;
+	
+	
 	
 	@Value("${jwt.secret}")
 	public void setSecret(String secret) {
 		this.secret = secret;
+	}
+	
+	@Value("${re.password}")
+	public void setReClavet(String _reClave) {
+		this.reClave = _reClave;
 	}
 
 	public User readUserByEmail(String email) {
@@ -46,7 +54,7 @@ public class LoginServiceImpl implements LoginService {
 		
 		newUser.setIsActive(true);
 		newUser.setCreated(LocalDateTime.now());
-		newUser.setLastLogin(LocalDateTime.now());
+		newUser.setModified(newUser.getCreated());
 		newUser.setToken(JwtUtil.generateToken(newUser.getEmail(), secret));
 
 		if(newUser.getPhones() != null && newUser.getPhones().size() > 0) {
@@ -60,26 +68,17 @@ public class LoginServiceImpl implements LoginService {
 		return savedUser;
 	}
 
-	public User login(String token) {
-		User user = this.readUserByToken(token), savedUser = null;
-		
-		if(user != null) {
-			//... el token debe cambiar al ejecutar por lo que se actualizará el token
-			user.setToken(JwtUtil.generateToken(user.getEmail(), secret));
-			savedUser = userRepository.save(user);
-		}
-		
-		return savedUser;
-	}
-
 	/*
 	 * Validaciones Sign-up
 	 */
-	public String validateSignUp(User user) {
+	public String validarRegistro(User user) {
 		List<String> errores = new ArrayList<String>();
 		
 		// email obligatorio, formato sea el correcto. (aaaaaaa@undominio.algo)
-		if(user.getEmail() == null || user.getEmail().isEmpty() || !validateEmail(user.getEmail())) errores.add("Correo invalido");
+		if(user.getEmail() == null || user.getEmail().isEmpty() || !validarCorreo(user.getEmail())) errores.add("Correo invalido");
+		
+		// Formato clave es parametrizado por e.r. obtenida de archivo configuración application.properties 
+		if(user.getPassword() == null || user.getPassword().isEmpty() || !validarClave(user.getPassword())) errores.add("Clave invalida");
 		
 		// Se valida existencia de usuario por email solo si este es valido
 		if(errores.size() == 0) {
@@ -87,29 +86,20 @@ public class LoginServiceImpl implements LoginService {
 			if(exist != null) errores.add("El correo ya registrado");
 		}
 		
-		// Debe tener solo una Mayúscula y solamente dos números (no necesariamente	consecutivos), en combinación de letras minúsculas, largo máximo de 12 y mínimo 8 
-		if(user.getPassword() == null || user.getPassword().isEmpty() || !validatePassword(user.getPassword())) errores.add("Invalid password");
-		
-		return errores.toString();
+		return errores.size() != 0? errores.toString(): null;
 	}
 	
-	private boolean validatePassword(String password) {
+	private boolean validarClave(String password) {
 		boolean isValid = false;
-		String re = "^[a-zA-Z0-9]+$"; // Sólo letras (min/may) y dígitos
+		String re = reClave; // "^[a-zA-Z0-9]{8,12}$"; // Sólo letras (min/may) y dígitos (8-12)
 		
 		//Se valida formato:
-		isValid = re.matches(re);
-		
-		//Se valida solo una mayúscula
-		if(!isValid) isValid = password.chars().filter(ch -> ch >= 'A' && ch <= 'Z' ).count() == 1; 
-		
-		//Se valida solamente 2 dígitos:
-		if(!isValid) isValid = password.chars().filter(ch -> ch >= '0' && ch <= '9' ).count() == 2; 
-		
+		isValid = password.matches(re);
+				
 		return isValid;
 	}
 	
-	private boolean validateEmail(String email) {
+	private boolean validarCorreo(String email) {
 		boolean isValid = false;
 		String re = "^[a-zA-Z]+@[a-zA-Z]+[.][a-zA-Z]+$"; //formato sea el correcto. (aaaaaaa@undominio.algo)
 		

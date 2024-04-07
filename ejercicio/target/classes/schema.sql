@@ -6,6 +6,7 @@ CREATE TABLE users (id UUID default random_uuid() PRIMARY KEY,
 					password VARCHAR(100) NOT NULL, 
 					token VARCHAR(256),
 					created DATE NOT NULL,
+					modified DATE NOT NULL,
 					last_login DATE,
 					is_active BOOLEAN NOT NULL
 				);
