@@ -28,4 +28,4 @@ A continuación se detallan los procedimientos para ejecución y aspectos de imp
  	2. La expresión regular que valida password puede ser configurada en archivo application.properties, etiqueta "re.password" 
  	3. Se incluyen pruebas unitarias
 	4. Se agregan pruebas de integración
-	5. En carpeta diagrama se incluye diagrama de solución (diagrama de clases)
+	5. En subcarpeta /ejercicio/Diagrama se incluye diagrama de solución (Diagrama de Clases)
