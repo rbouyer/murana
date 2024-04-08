@@ -1,7 +1,7 @@
 # Ejercicio practico Muruna
 A continuación se detallan los procedimientos para ejecución y aspectos de implementación
 
-##Bibliotecas, frameworks y herramientas utilizados:
+## Bibliotecas, frameworks y herramientas utilizados:
 	1. Spring Boot 2.2.5
 	2. Maven 3.3.3
 	3. Java 8
@@ -9,7 +9,7 @@ A continuación se detallan los procedimientos para ejecución y aspectos de imp
 	5. Hibernate 5.4.12
 	6. Eclipse 2020-06 (4.16.0)
 
-##Ejecución
+## Ejecución
 	Tanto la ejecución del servicio, como de los tests se puede realizar desde línea de comandos (subcarpeta /ejercicio):
 	1. Para contruir: mvn install
 	2. Para ejecutar servicio: gradlew bootRun
@@ -22,7 +22,7 @@ A continuación se detallan los procedimientos para ejecución y aspectos de imp
 		6.2 Desde una aplicación para prueba de API (por ejemplo Postman) ejecutar Post al endpoint /api/v1/registro en puerto 8082, ingresando en cuerpo el mensaje json correspondiente, ejemplo de url:
 			http://localhost:8082/api/v1/registro
 
-##Consideraciones Generales
+## Consideraciones Generales
 	1. Se utilizan tipo de datos UUID como id de registros
 	2. Se agregan pruebas de integración
 	3. En carpeta diagrama se incluye diagrama de solución
