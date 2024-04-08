@@ -25,6 +25,7 @@ A continuación se detallan los procedimientos para ejecución y aspectos de imp
 
 ## Consideraciones Generales
 	1. Se utilizan tipo de datos UUID como id de registros
- 	2. Se incluyen pruebas unitarias
-	3. Se agregan pruebas de integración
-	4. En carpeta diagrama se incluye diagrama de solución (diagrama de clases)
+ 	2. La expresión regular que valida password puede ser configurada en archivo application.properties, etiqueta "re.password" 
+ 	3. Se incluyen pruebas unitarias
+	4. Se agregan pruebas de integración
+	5. En carpeta diagrama se incluye diagrama de solución (diagrama de clases)
