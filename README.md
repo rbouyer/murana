@@ -1,4 +1,4 @@
-# Ejercicio practico Muruna
+# Ejercicio práctico Muruna
 A continuación se detallan los procedimientos para ejecución y aspectos de implementación
 
 ## Bibliotecas, frameworks y herramientas utilizados:
