@@ -8,6 +8,7 @@ A continuación se detallan los procedimientos para ejecución y aspectos de imp
 	4. JUnit 5
 	5. Hibernate 5.4.12
 	6. Eclipse 2020-06 (4.16.0)
+ 	7. Swagger 2.9.2
 
 ## Ejecución
 	Tanto la ejecución del servicio, como de los tests se puede realizar desde línea de comandos (subcarpeta /ejercicio):
@@ -16,7 +17,7 @@ A continuación se detallan los procedimientos para ejecución y aspectos de imp
 	3. Para ejecutar las pruebas de integración: mvn test -Dtest=IntegrationTest
 	4. Para ejecutar las pruebas unitarias: mvn test -Dtest=UnitTest
 	5. Para ejecutar todas las pruebas unitarias: mvn test
-	6. Para ejecutar desde línea de comando, en subcarpeta ejercicio:
+	6. Para ejecutar desde línea de comando, en subcarpeta /ejercicio:
 		6.1 Ejecutar comando sobre el jar generado en punto 1., ejemplo: 
 			java -jar target\ejercicio-0.0.1-SNAPSHOT.jar
 		6.2 Desde una aplicación para prueba de API (por ejemplo Postman) ejecutar Post al endpoint /api/v1/registro en puerto 8082, ingresando en cuerpo el mensaje json correspondiente, ejemplo de url:
@@ -24,5 +25,6 @@ A continuación se detallan los procedimientos para ejecución y aspectos de imp
 
 ## Consideraciones Generales
 	1. Se utilizan tipo de datos UUID como id de registros
-	2. Se agregan pruebas de integración
-	3. En carpeta diagrama se incluye diagrama de solución
+ 	2. Se incluyen pruebas unitarias
+	3. Se agregan pruebas de integración
+	4. En carpeta diagrama se incluye diagrama de solución (diagrama de clases)
